@@ -103,7 +103,7 @@ public:
 *	stringTable		控件名到iid的映射
 *	unitsRec		iid到控件句柄的映射
 *	HWNDsRec		安全句柄到iid的映射		在preTranslate里使用以快速检查是否有符合HWND的相应控件
-*	attrRec			保留控件创建时的信息
+*	attrRec			保留的 控件创建时的信息
 *	msg_map			消息地图
 */
 	unordered_map<string, WID> stringTable;

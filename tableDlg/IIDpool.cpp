@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "IIDpool.h"
 //#include<xstddef>
-const _m_UID IID_MAX = 1e6;
+const _m_UID IID_MAX = 1e7;
 std::set < _m_UID,std::greater<_m_UID> > IIDSTACK;
 _m_UID getNewIID()
 {

@@ -5,7 +5,7 @@
 #include "pch.h"
 #include "framework.h"
 #include "tableDlg.h"
-#include "tableDlgDlg.h"
+#include "DynamicDialog.h"
 #include "afxdialogex.h"
 
 #ifdef _DEBUG
@@ -58,13 +58,13 @@ BOOL CDynamicDialog::OnInitDialog()
 				CString con;
 				ed0->GetWindowTextW(con);
 				ed0->SetWindowTextW(con + L"#");
-				//非true，以触发按钮默认的松开效果,否则会有严重的后果，参阅msg_hanlder的说明
-				return 1;//msg_handler_TRUE;
+				//非true，以触发按钮默认的松开效果,否则...
+				return msg_handler_TRUE+1;//msg_handler_TRUE;
 		}),
 			make_pair<Tmsg,msg_handler>(WM_MOUSELEAVE,[](msg_hanlder_paras)->int {
 			//cdd->SetFocus();
 			//ASSERT(GetFocus() != pThis);
-			return 1;
+			return msg_handler_TRUE+1;
 		}),
 			})
 	};
@@ -72,6 +72,7 @@ BOOL CDynamicDialog::OnInitDialog()
 #endif
 	for (auto& wus : waitToCreate)
 		createDynamicUnits(wus);
+	waitToCreate.clear();
 	return TRUE;  // 除非将焦点设置到控件，否则返回 TRUE
 }
 

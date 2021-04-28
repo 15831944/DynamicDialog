@@ -5,7 +5,7 @@
 #include "pch.h"
 #include "framework.h"
 #include "tableDlg.h"
-#include "tableDlgDlg.h"
+#include "DynamicDialog.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
