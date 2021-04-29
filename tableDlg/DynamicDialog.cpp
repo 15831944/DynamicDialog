@@ -151,7 +151,7 @@ CDynamicDialog::~CDynamicDialog()
 		delete p.second;
 	};
 }
-unitAttr CDynamicDialog::make_UnitAttr(string unitName, unitAttr::unitTypeCol unitType, LPCTSTR lpszCaption, DWORD dwStyle, m_Rect rect, string pParentUnitName, decltype(unitAttr::msg_handlers) msg_handlers)
+unitAttr make_UnitAttr(string unitName, unitAttr::unitTypeCol unitType, LPCTSTR lpszCaption, DWORD dwStyle, m_Rect rect, string pParentUnitName, decltype(unitAttr::msg_handlers) msg_handlers)
 {
 	return unitAttr(unitName,unitType,lpszCaption,dwStyle,rect,pParentUnitName,msg_handlers);
 }
@@ -210,8 +210,10 @@ void CDynamicDialog::createDynamicUnits(const vector<unitAttr>& units)
 			// send  a message active it
 			::SendMessageW((HWND)unitsRec[stringTable[unit.unitName]], WM_ACTIVATE, 0, 0);
 			releaseIID(newIID);
+			continue;
 		}
 		CWnd*unitCWnd= dynamicCreateUnit(unit, newIID);
+		ASSERT(unitCWnd != nullptr);//
 		unitsRec.emplace(std::make_pair(newIID, unitCWnd));
 		HWNDsRec.emplace(std::make_pair(unitCWnd->GetSafeHwnd(), newIID));
 		attrRec.emplace(make_pair(newIID, unit));

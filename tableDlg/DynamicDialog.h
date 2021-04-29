@@ -111,7 +111,6 @@ public:
 	unordered_map<HWND, WID> HWNDsRec;
 	unordered_map<WID, unitAttr>attrRec;
 	unordered_map<Tmsg, unordered_map<WID, msg_handler>> msg_map;
-	unitAttr make_UnitAttr(string unitName, unitAttr:: unitTypeCol unitType, LPCTSTR lpszCaption, DWORD dwStyle, m_Rect rect, string pParentUnitName,decltype(unitAttr:: msg_handlers) msg_handlers);
 	CWnd* dynamicCreateUnit(unitAttr ua,_m_UID iid);
 	void createDynamicUnits(const vector<unitAttr>& units);
 	//这个参数应该在domodal之前更改，并在oninitialDlg里使用并清空
@@ -119,5 +118,6 @@ public:
 protected:
 	msg_handler& _get_hanlder(Tmsg msg, WID wid);
 };
-
+unitAttr make_UnitAttr(string unitName, unitAttr:: unitTypeCol unitType, LPCTSTR lpszCaption, DWORD dwStyle, m_Rect rect, string pParentUnitName,decltype(unitAttr:: msg_handlers) msg_handlers);
+// default==nullptr
 extern msg_handler default_msg_handler;
